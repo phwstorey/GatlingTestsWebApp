@@ -1,8 +1,12 @@
 version: "3.8"
 services:
   gatling-web-app:
-    image: gatling-web-app:latest
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/gatling-test-repo:${TAG:-latest}
+    environment:
+      AWS_ACCOUNT_ID: ${AWS_ACCOUNT_ID:?AWS_ACCOUNT_ID}
+      AWS_REGION: ${AWS_REGION:?AWS_REGION}
     ports:
       - 8080:8080
     build:
       context: .
+
