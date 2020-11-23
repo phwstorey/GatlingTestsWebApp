@@ -8,4 +8,5 @@ RUN mvn package
 
 FROM adoptopenjdk/openjdk14
 COPY --from=package /build/target/*.jar /app/app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+RUN ls
+ENTRYPOINT ["java","-jar","/app/app.jar"]
